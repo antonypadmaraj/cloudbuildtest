@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gke-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: dateGKE-job
+    spec:
+      containers:
+      - name: gke1-demo
+        image: europe-west2-docker.pkg.dev/fair-root-452221-b1/gke-app/gke1demo:v01
+        command: ["python", "myapp.py"]
+      restartPolicy: Never
+  backoffLimit: 4
